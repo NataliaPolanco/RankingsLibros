@@ -68,6 +68,7 @@ router.get('/notes/edit/:id', isAuthenticated, async (req, res) => {
 
     await Note.findByIdAndUpdate(req.params.id, {title,description,datePub,author});
     req.flash('success_msg', 'Ficha editada satisfactoriamente');
+
     res.redirect('/notes');
 });
   
