@@ -52,24 +52,31 @@ res.render('notes/all-notes',{notes});
 
 });
 
-router.get('/notes/edit/:id', isAuthenticated,async (req,res)=>{
-   const note= await Note.findById(req.params.id);
+router.get('/notes/edit/:id', isAuthenticated, async (req, res) => {
+    const note = await Note.findById(req.params.id);
+    res.render('notes/edit-note', { note });
 
-    res.render('notes/edit-note',{note} );
-    
-});
-router.put('/notes/edit-note/:id', isAuthenticated,async (req,res)=>{
-    const{title, description,datePub,   author}=req.body;
-    await Note.findByIdAndUpdate(req.params.id,{title,description,datePub, author});
+    if(note.user != req.user.id) {
+      req.flash('error_msg', 'No autorizado');
+      return res.redirect('/notes');
+    } 
+  });
+  
+  router.put('/notes/edit-note/:id', isAuthenticated, async (req, res) => {
+    const {title,description,datePub,author} = req.body;
+    const errors= [];
+
+    await Note.findByIdAndUpdate(req.params.id, {title,description,datePub,author});
     req.flash('success_msg', 'Ficha editada satisfactoriamente');
-
     res.redirect('/notes');
 });
-
-router.delete('/notes/delete/:id',isAuthenticated, async (req,res)=>{
+  
+// Delete Notes
+router.delete('/notes/delete/:id', isAuthenticated, async (req, res) => {
     await Note.findByIdAndDelete(req.params.id);
-    req.flash('success_msg', 'Ficha borrada satisfactoriamente');
-
+    req.flash('success_msg', 'Ficha borrada exitosamente');
     res.redirect('/notes');
-})
-module.exports= router;
+  });
+  
+  module.exports = router;
+  

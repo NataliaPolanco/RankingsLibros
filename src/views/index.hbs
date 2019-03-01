@@ -4,11 +4,22 @@
     <p class="lead">Registrate, añade fichas de libros y vota.</p>
 <hr class="my-4">
 
+{{#if user}}
+<p>Añade una ficha nueva</p>
+<a href="/users/note/add" class='btn btn-primary btn-lg'>¡Inicia Sesión!</a>
+<p>O edita las fichas que ya creaste</p>
+<a href="/users/note" class='btn btn-primary btn-lg'>¡Inicia Sesión!</a>
+
+{{else}}
+ <h3 class="lead">Registrate, añade fichas de libros y vota.</h3>
+
 <p>Si ya tienes una cuenta, inicie sesión</p>
 <a href="/users/signin" class='btn btn-primary btn-lg'>¡Inicia Sesión!</a>
 
 <p>De lo contrario registrese</p>
 <a href="/users/signup" class='btn btn-primary btn-lg'>¡Registrate!</a>
+
+ {{/if}}
 
 
 </div>
