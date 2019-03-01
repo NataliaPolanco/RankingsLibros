@@ -1,0 +1,29 @@
+<div class="row">
+    {{#each notes}}
+    <div class="col-md-5">
+     <div class="card card-body">
+      <h4 class="card-title d-flex justify-content-between align-items-center">
+Título: {{title}}<a href="/notes/edit/{{id}}"><i class="fas fa-edit "></i></a>
+
+</h4>
+<p>Descripción: {{description}}</p>
+<p>Fecha de Publicación {{datePub}} </p>
+<p>Autor: {{author}}</p>
+<form action="/notes/delete/{{_id}}?_method=DELETE" method="POST">
+<input type="hidden" name="_method" value="DELETE">
+<button class="btn btn-danger btn-block btn-sm" type="submit">Borrar</button>
+</form>
+
+</div>
+
+    </div>
+    {{else}}
+    <div class="card mx-auto">
+        <div class="card-body">
+
+        <p class="lead">No has agregado libros aún.</p>
+        <a href="/notes/add" class="btn btn-success btn-block">Añade la ficha de un libro</a>
+        </div>
+    </div>
+    {{/each}}
+</div>
