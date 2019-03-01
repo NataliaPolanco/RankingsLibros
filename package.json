@@ -1,5 +1,5 @@
 {
-  "name": "Nodejs-app",
+  "name": "RankingsLibros",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "dev": "nodemon src/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Natalia Polanco",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",

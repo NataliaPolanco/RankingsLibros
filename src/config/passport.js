@@ -5,11 +5,11 @@ const User = require('../models/Users');
 passport.use(new LocalStrategy({
     usernameField: 'email'
 }, async(email, password, done) => {
-    User.findOne({ email: email });
-    if (!User) {
+    const user=await User.findOne({ email: email });
+    if (!user) {
         return done(null, false, { message: 'Este usuario no existe' });
     } else {
-        const match = await User.matchPassword(password);
+        const match = await user.matchPassword(password);
         if (match) {
             return done(null, user);
         } else {
